@@ -32,4 +32,22 @@ public class Node<T> {
     public void setNextNode(Node<T> nextNode) {
         this.nextNode = nextNode;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Node <?> node = (Node <?>) o;
+
+        if (value != null ? !value.equals(node.value) : node.value != null) return false;
+        return nextNode != null ? nextNode.equals(node.nextNode) : node.nextNode == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = value != null ? value.hashCode() : 0;
+        result = 31 * result + (nextNode != null ? nextNode.hashCode() : 0);
+        return result;
+    }
 }

@@ -3,9 +3,6 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.Spliterator;
 
-/**
- * Created by дшшр on 18.03.2017.
- */
 public class LinkedSet<T> implements Set {
 
     public LinkedSet() {
