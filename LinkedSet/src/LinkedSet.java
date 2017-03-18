@@ -6,11 +6,11 @@ import java.util.Spliterator;
 /**
  * Created by дшшр on 18.03.2017.
  */
-public class LinkedSet implements Set {
+public class LinkedSet<T> implements Set {
 
     public LinkedSet() {
-        head = new Node();
-        end = new Node();
+        head = new Node<T>();
+        end = new Node<T>();
         head.setNextNode(end);
         size = 0;
     }
@@ -53,7 +53,7 @@ public class LinkedSet implements Set {
     public boolean add(Object o) {
 
         if (size == 0) {
-            head.setNode(o);
+            head.setNode((T) o);
             return true;
         }
         if (!contains(o)) {
@@ -79,8 +79,8 @@ public class LinkedSet implements Set {
 
     @Override
     public void clear() {
-        head = new Node();
-        end = new Node();
+        head = new Node<T>();
+        end = new Node<T>();
 
     }
 
@@ -115,7 +115,7 @@ public class LinkedSet implements Set {
         return result;
     }
 
-    private Node head;
-    private Node end;
+    private Node<T> head;
+    private Node<T> end;
     private int size;
 }

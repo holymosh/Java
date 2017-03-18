@@ -2,14 +2,14 @@
  * Created by дшшр on 18.03.2017.
  */
 public class Node<T> {
-    private T Node;
-    private Node nextNode;
+    private T value;
+    private Node<T> nextNode;
 
     public Node(){
 
     }
     public Node(T node) {
-        Node = node;
+        value = node;
     }
 
     public Node(T node, Node nextNode) {
@@ -18,7 +18,7 @@ public class Node<T> {
     }
 
     public T getNode() {
-        return Node;
+        return value;
     }
 
     public Node getNextNode() {
@@ -26,10 +26,10 @@ public class Node<T> {
     }
 
     public void setNode(T Node) {
-        this.Node = Node;
+        this.value = Node;
     }
 
-    public void setNextNode(Node nextNode) {
+    public void setNextNode(Node<T> nextNode) {
         this.nextNode = nextNode;
     }
 }
