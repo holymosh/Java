@@ -51,6 +51,7 @@ public class LinkedSet<T> implements Set {
 
         if (size == 0) {
             head.setNode((T) o);
+            ++size;
             return true;
         }
         if (!contains(o)) {
