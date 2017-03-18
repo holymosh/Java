@@ -36,6 +36,7 @@ public class LinkedSet implements Set {
             }
             currentNode = currentNode.getNextNode();
         }
+        return result;
     }
 
     @Override
@@ -55,7 +56,7 @@ public class LinkedSet implements Set {
             head.setNode(o);
             return true;
         }
-        if (!contains(0)) {
+        if (!contains(o)) {
             ++size;
             end.setNextNode(new Node(o));
             end = end.getNextNode();
