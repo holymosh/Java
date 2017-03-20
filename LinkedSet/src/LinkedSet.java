@@ -108,7 +108,8 @@ public class LinkedSet<T> implements Set {
 
     @Override
     public boolean removeAll(Collection c) {
-        return false;
+        c.forEach(o -> remove(o));
+        return true;
     }
 
     @Override
