@@ -12,6 +12,7 @@ public class Node<T> {
         value = node;
     }
 
+
     public Node(T node, Node nextNode) {
         this(node);
         this.nextNode = nextNode;
@@ -21,7 +22,7 @@ public class Node<T> {
         return value;
     }
 
-    public Node getNextNode() {
+    public Node<T> getNextNode() {
         return nextNode;
     }
 

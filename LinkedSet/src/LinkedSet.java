@@ -25,7 +25,7 @@ public class LinkedSet<T> implements Set {
     @Override
     public boolean contains(Object o) {
         boolean result = false;
-        Node currentNode = new Node(head.getNode());
+        Node<T> currentNode = new Node<T>(head.getNode());
         for (int i = 0; i < size; i++) {
             if (currentNode.getNode().equals(o)) {
                 result = true;
@@ -56,7 +56,7 @@ public class LinkedSet<T> implements Set {
         }
         if (!contains(o)) {
             ++size;
-            end.setNextNode(new Node(o));
+            end.setNextNode(new Node<T>((T) o));
             end = end.getNextNode();
             return true;
         }
@@ -65,6 +65,25 @@ public class LinkedSet<T> implements Set {
 
     @Override
     public boolean remove(Object o) {
+        boolean result = false;
+        Node<T> currentNode = new Node <T>(head.getNode(),head.getNextNode());
+        Node<T> nodeBeforeCurrnet = head;
+        if (head.equals(o)){
+            head = head.getNextNode();
+            return true;
+        }
+        Node<T> nodeBeforeCurrent = currentNode;
+        for (int i = 1; i < size-1; i++) {
+            if (currentNode.equals(o)){
+               nodeBeforeCurrent.setNextNode(currentNode.getNextNode());
+               return true;
+            }
+            nodeBeforeCurrent = currentNode;
+            currentNode = currentNode.getNextNode();
+        }
+        if (end.equals(o)){
+            --size;
+        }
         return false;
     }
 
@@ -105,7 +124,7 @@ public class LinkedSet<T> implements Set {
     @Override
     public Object[] toArray(Object[] a) {
         Object[] result = new Object[size];
-        Node currentNode = new Node(head.getNode(), head.getNextNode());
+        Node<T> currentNode = new Node<T>(head.getNode(), head.getNextNode());
         for (int i = 0; i < size; i++) {
             result[i] = currentNode.getNode();
             currentNode = currentNode.getNextNode();
