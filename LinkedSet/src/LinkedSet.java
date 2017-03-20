@@ -1,7 +1,4 @@
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Set;
-import java.util.Spliterator;
+import java.util.*;
 
 public class LinkedSet<T> implements Set {
 
@@ -38,7 +35,7 @@ public class LinkedSet<T> implements Set {
 
     @Override
     public Iterator iterator() {
-        return null;
+        return new LinkedSetIterator(head,end,size);
     }
 
     @Override
