@@ -11,14 +11,19 @@ public class Logger {
     public Logger(String configPath) {
         this.configPath = configPath;
         File file = new File(configPath);
-        int next;
+        String value = null;
+        byte[] next = new byte[1];
         try (InputStream inputStream = new FileInputStream(file)) {
-            next  = inputStream.read();
-            System.out.print(next);
+            inputStream.read(next);
+            value = new String(next);
+            System.out.print(value);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        switch (value){
+            
         }
     }
 }
