@@ -1,3 +1,4 @@
+import java.io.UnsupportedEncodingException;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -12,6 +13,8 @@ public class Student {
     private int age;
     private static int ID_Generator=1;
     private int[] parentsId;
+
+    private Logger logger;
 
     private String login;
     private String password;
@@ -33,7 +36,7 @@ public class Student {
     }
 
 
-    public Student(int cashMoney, String name, String surname, int age, int[] parentsId, String login, String password) {
+    public Student(int cashMoney, String name, String surname, int age, int[] parentsId) throws UnsupportedEncodingException {
         this.cashMoney = cashMoney;
         this.name = name;
         this.surname = surname;
@@ -41,12 +44,21 @@ public class Student {
         this.parentsId = parentsId;
         this.login = login;
         this.password = password;
+        logger = new Logger(Logger.defaultPath);
+        switch (logger.getState()){
+            case Error: break;
+            case Warn:break;
+            case Info:
+            case Debug: logger.write("student "+name+" "+ surname+" created");
+
+        }
+
     }
 
     public void giveCash(int money){
-        IllegalArgumentException exception = new IllegalArgumentException("money can't be less than zero");
         if (money<0) {
-            throw exception;
+            logger.write("money can't be less than zero " + surname +" "+ name+" ");
+            throw new IllegalArgumentException("money can't be less than zero ");
         }
         cashMoney+=money;
     }
@@ -63,5 +75,6 @@ public class Student {
 
 
     }
+
 
 }
