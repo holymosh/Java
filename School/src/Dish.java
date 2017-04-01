@@ -30,6 +30,6 @@ public class Dish {
     public Dish(int name, int price) {
         this.name = name;
         this.price = price;
-        id=++ID_Generator;
+        id = ++ID_Generator;
     }
 }

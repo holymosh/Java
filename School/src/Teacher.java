@@ -12,15 +12,11 @@ public class Teacher implements Employable {
         this.id = id;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
     public void setSalary(int salary) {
+
+        if (salary < 0) {
+            throw new IllegalArgumentException("salary can't be less than zero");
+        }
         this.salary = salary;
     }
 
@@ -42,6 +38,10 @@ public class Teacher implements Employable {
 
     @Override
     public Journal getJournal(int id) {
-        return Journals.getInstance().getJournals().stream().filter(journal -> journal.getId()==id).findFirst().get();
+        return Journals.getInstance().getJournals().stream().filter(journal -> journal.getId() == id && journal.getTeacherId() == id).findFirst().get();
+    }
+
+    public void setMark(Mark mark, int journalId) {
+        getJournal(journalId).AddMark(mark);
     }
 }

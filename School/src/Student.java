@@ -10,7 +10,7 @@ public class Student {
     private String name;
     private String surname;
     private int age;
-    private static int ID_Generator=1;
+    private static int ID_Generator = 1;
     private int[] parentsId;
 
     public String getName() {
@@ -30,7 +30,7 @@ public class Student {
     }
 
 
-    public Student( int cashMoney, String name, String surname, int age) {
+    public Student(int cashMoney, String name, String surname, int age) {
         this.id = ++ID_Generator;
         this.cashMoney = cashMoney;
         this.name = name;
@@ -38,27 +38,28 @@ public class Student {
         this.age = age;
     }
 
-    public Student( String name , String surname , int age , int[] parents){
+    public Student(String name, String surname, int age, int[] parents) {
         this.id = ++ID_Generator;
         this.age = age;
         this.name = name;
         this.surname = surname;
         parentsId = parents;
     }
-    public void giveCash(int money){
+
+    public void giveCash(int money) {
         IllegalArgumentException exception = new IllegalArgumentException("money can't be less than zero");
-        if (money<0) {
+        if (money < 0) {
             throw exception;
         }
-        cashMoney+=money;
+        cashMoney += money;
     }
 
-    public void payForDish(int dishId){
+    public void payForDish(int dishId) {
         Menu menu = Menu.getInstance();
-        Optional<Dish> dishStream = menu.getMenu().stream().filter(dish -> dish.getId()==dishId).findFirst();
+        Optional<Dish> dishStream = menu.getMenu().stream().filter(dish -> dish.getId() == dishId).findFirst();
         Dish dish = dishStream.get();
         IllegalArgumentException exception = new IllegalArgumentException("dish price more than student cash");
-        if (dish.getPrice()>cashMoney) {
+        if (dish.getPrice() > cashMoney) {
             throw exception;
         }
         cashMoney -= dish.getPrice();

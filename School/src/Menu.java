@@ -12,20 +12,24 @@ public class Menu {
 
     private Menu() {
     }
+
     private List<Dish> menu;
 
     public List<Dish> getMenu() {
         return menu;
     }
-    public void addDish(Dish dish){
+
+    public void addDish(Dish dish) {
         menu.add(dish);
     }
-    public void removeDish(Dish dish){
+
+    public void removeDish(Dish dish) {
         menu.remove(dish);
     }
-    public void setNewPrice(int id , int price){
+
+    public void setNewPrice(int id, int price) {
         menu.forEach(dish -> {
-            if (dish.getId()==id){
+            if (dish.getId() == id) {
                 dish.setPrice(price);
             }
         });

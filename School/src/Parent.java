@@ -2,7 +2,7 @@
  * Created by дшшр on 07.03.2017.
  */
 public class Parent {
-    private static int ID_Geneator=1;
+    private static int ID_Geneator = 1;
     private int id;
     private String name;
     private String surname;

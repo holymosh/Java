@@ -14,7 +14,7 @@ public class Journal {
         this.courseName = courseName;
         this.teacherId = teacherId;
         this.markList = markList;
-        id= ++ID_Generator;
+        id = ++ID_Generator;
     }
 
     public Journal(String courseName, int teacherId) {
@@ -38,7 +38,8 @@ public class Journal {
     public List<Mark> getMarkList() {
         return markList;
     }
-    public void AddMark(Mark mark){
+
+    public void AddMark(Mark mark) {
         markList.add(mark);
     }
 }

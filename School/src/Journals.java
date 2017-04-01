@@ -13,6 +13,7 @@ public class Journals {
 
     private Journals() {
     }
+
     private List<Journal> journals;
 
     public void setJournals(List<Journal> journals) {
@@ -28,11 +29,11 @@ public class Journals {
         this.journals = journals;
     }
 
-    public List<Journal> getTeachersJournals(int teacherId){
+    public List<Journal> getTeachersJournals(int teacherId) {
         return journals.stream().filter(journal -> journal.getTeacherId() == teacherId).collect(Collectors.toList());
     }
 
-    public void addMark(int journalId, Mark mark){
+    public void addMark(int journalId, Mark mark) {
         Journal journal = journals.stream().filter(entity -> entity.getId() == journalId).findFirst().get();
         journal.AddMark(mark);
     }

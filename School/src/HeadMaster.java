@@ -13,6 +13,6 @@ public class HeadMaster implements Employable {
 
     @Override
     public Journal getJournal(int id) {
-        return Journals.getInstance().getJournals().stream().filter(journal -> journal.getId()==id).findFirst().get();
+        return Journals.getInstance().getJournals().stream().filter(journal -> journal.getId() == id).findFirst().get();
     }
 }
