@@ -15,4 +15,16 @@ public class HeadMaster implements Employable {
     public Journal getJournal(int id) {
         return Journals.getInstance().getJournals().stream().filter(journal -> journal.getId() == id).findFirst().get();
     }
+
+    public void removeTeacher(int id) {
+        Teachers.getInstance().removeTeacher(id);
+    }
+
+    public void addTeacher(Teacher teacher) {
+        Teachers.getInstance().addTeacher(teacher);
+    }
+
+    public void setSalary(int salary, int teacherId) {
+        Teachers.getInstance().setSalary(teacherId, salary);
+    }
 }

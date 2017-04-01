@@ -28,14 +28,17 @@ public class Menu {
     }
 
     public void setNewPrice(int id, int price) {
-        menu.forEach(dish -> {
-            if (dish.getId() == id) {
-                dish.setPrice(price);
-            }
-        });
+        if (price < 0) {
+            throw new IllegalArgumentException();
+        }
+        menu.stream().filter(dish -> dish.getId() == id).findFirst().get().setPrice(price);
     }
 
     public Dish getDish(int id) {
         return menu.stream().filter(dish -> dish.getId() == id).findFirst().get();
+    }
+
+    public void removeDish(int id) {
+        menu.remove(getDish(id));
     }
 }

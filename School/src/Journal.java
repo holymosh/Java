@@ -9,6 +9,11 @@ public class Journal {
     private String courseName;
     private int teacherId;
     private List<Mark> markList;
+    private int groupId;
+
+    public int getGroupId() {
+        return groupId;
+    }
 
     public Journal(String courseName, int teacherId, List<Mark> markList) {
         this.courseName = courseName;
@@ -17,9 +22,10 @@ public class Journal {
         id = ++ID_Generator;
     }
 
-    public Journal(String courseName, int teacherId) {
+    public Journal(String courseName, int teacherId, int groupId) {
         this.courseName = courseName;
         this.teacherId = teacherId;
+        this.groupId = groupId;
         id = ++ID_Generator;
     }
 

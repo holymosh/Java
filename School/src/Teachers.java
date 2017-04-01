@@ -18,6 +18,10 @@ public class Teachers {
         teachers.remove(getTeacher(id));
     }
 
+    public void addTeacher(Teacher teacher) {
+        teachers.add(teacher);
+    }
+
     private static Teachers ourInstance = new Teachers();
 
     public static Teachers getInstance() {

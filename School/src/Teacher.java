@@ -1,3 +1,6 @@
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * Created by дшшр on 07.03.2017.
  */
@@ -7,6 +10,7 @@ public class Teacher implements Employable {
     private String name;
     private String surname;
     private int salary;
+    private List<String> courses;
 
     public void setId(int id) {
         this.id = id;
@@ -43,5 +47,9 @@ public class Teacher implements Employable {
 
     public void setMark(Mark mark, int journalId) {
         getJournal(journalId).AddMark(mark);
+    }
+
+    public List<Journal> getAllTeacherJournals() {
+        return Journals.getInstance().getJournals().stream().filter(journal -> journal.getTeacherId() == id).collect(Collectors.toList());
     }
 }

@@ -37,4 +37,8 @@ public class Journals {
         Journal journal = journals.stream().filter(entity -> entity.getId() == journalId).findFirst().get();
         journal.AddMark(mark);
     }
+
+    public List<Journal> getGroupJournal(int groupId) {
+        return journals.stream().filter(journal -> journal.getGroupId() == groupId).collect(Collectors.toList());
+    }
 }
