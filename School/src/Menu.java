@@ -34,4 +34,8 @@ public class Menu {
             }
         });
     }
+
+    public Dish getDish(int id) {
+        return menu.stream().filter(dish -> dish.getId() == id).findFirst().get();
+    }
 }
