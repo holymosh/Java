@@ -64,7 +64,6 @@ public class Student {
         }
         cashMoney -= dish.getPrice();
 
-
     }
 
 }
