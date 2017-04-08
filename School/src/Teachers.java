@@ -11,6 +11,10 @@ public class Teachers {
         return teachers.stream().filter(teacher -> teacher.getId() == id).findFirst().get();
     }
 
+    public List<Teacher> getTeachers() {
+        return teachers;
+    }
+
     public void setSalary(int id, int salary) {
         getTeacher(id).setSalary(salary);
     }

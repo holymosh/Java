@@ -41,4 +41,6 @@ public class Journals {
     public List<Journal> getGroupJournal(int groupId) {
         return journals.stream().filter(journal -> journal.getGroupId() == groupId).collect(Collectors.toList());
     }
+
+
 }

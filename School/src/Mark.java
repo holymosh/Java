@@ -10,6 +10,22 @@ public class Mark {
     private Date date;
     private int studentId;
 
+    public int getId() {
+        return id;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public int getStudentId() {
+        return studentId;
+    }
+
     public Mark(int value, Date date, int studentId) {
         this.value = value;
         this.date = date;

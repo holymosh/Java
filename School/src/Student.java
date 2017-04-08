@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -9,9 +11,18 @@ public class Student {
     private int age;
     private static int ID_Generator = 1;
     private int[] parentsId;
+    private double averageMark;
+
+    public double getAverageMark() {
+        return averageMark;
+    }
 
     public int getId() {
         return id;
+    }
+
+    public int[] getParentsId() {
+        return parentsId;
     }
 
     public String getName() {
@@ -55,6 +66,15 @@ public class Student {
         cashMoney += money;
     }
 
+    public boolean containsParentId(int id) {
+        boolean result = false;
+        for (int i = 0; i < parentsId.length; i++) {
+            result = parentsId[i] == id;
+            if (result) return result;
+        }
+        return result;
+    }
+
 
     public void payForDish(int dishId) {
         Menu menu = Menu.getInstance();
@@ -65,6 +85,20 @@ public class Student {
             throw exception;
         }
         cashMoney -= dish.getPrice();
+    }
+
+    public void calculateAverageMark() {
+        List<Mark> marks = new ArrayList<>();
+        Journals.getInstance().getJournals().forEach(journal -> journal.getMarkList().forEach(mark -> {
+            if (mark.getStudentId() == id) {
+                marks.add(mark);
+            }
+        }));
+        int sum = 0;
+        for (int i = 0; i < marks.size(); i++) {
+            sum += marks.get(i).getValue();
+        }
+        averageMark = sum / marks.size();
 
     }
 
