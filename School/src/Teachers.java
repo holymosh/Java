@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by дшшр on 31.03.2017.
@@ -17,6 +18,11 @@ public class Teachers {
     public void removeTeacher(int id) {
         teachers.remove(getTeacher(id));
     }
+
+    public Optional<Teacher> getTeacherOptional(int id){
+        return teachers.stream().filter(teacher -> teacher.getId()==id).findFirst();
+    }
+
 
     public void addTeacher(Teacher teacher) {
         teachers.add(teacher);

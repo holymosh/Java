@@ -1,9 +1,6 @@
 import java.util.Optional;
-import java.util.stream.Stream;
 
-/**
- * Created by дшшр on 07.03.2017.
- */
+
 public class Student {
     private int id;
     private int cashMoney;
@@ -12,6 +9,10 @@ public class Student {
     private int age;
     private static int ID_Generator = 1;
     private int[] parentsId;
+
+    public int getId() {
+        return id;
+    }
 
     public String getName() {
         return name;
@@ -53,6 +54,7 @@ public class Student {
         }
         cashMoney += money;
     }
+
 
     public void payForDish(int dishId) {
         Menu menu = Menu.getInstance();
