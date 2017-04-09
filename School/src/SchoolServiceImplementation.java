@@ -12,6 +12,8 @@ import java.util.stream.Collectors;
  * Created by дшшр on 08.04.2017.
  */
 public class SchoolServiceImplementation implements SchoolService {
+    ExecutorService executorService;
+
     @Override
     public void setExecutorService(ExecutorService executorService) {
         this.executorService = executorService;
@@ -20,11 +22,6 @@ public class SchoolServiceImplementation implements SchoolService {
     @Override
     public Future<List<Student>> getStudents() {
         Future<List<Student>> listFuture = executorService.submit(() -> Students.getInstance().students);
-        try {
-            listFuture.wait();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         return listFuture;
     }
 
@@ -32,22 +29,12 @@ public class SchoolServiceImplementation implements SchoolService {
     public Future<List<Student>> getStudents(Predicate<? extends Student> predicate) {
         Future<List<Student>> listFuture = executorService.submit(() -> Students.getInstance().students.stream()
                 .filter((Predicate<? super Student>) predicate).collect(Collectors.toList()));
-        try {
-            listFuture.wait();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         return listFuture;
     }
 
     @Override
     public Future<List<Teacher>> getTeachers() {
         Future<List<Teacher>> listFuture = executorService.submit(() -> Teachers.getInstance().getTeachers());
-        try {
-            listFuture.wait();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         return listFuture;
     }
 
@@ -55,11 +42,6 @@ public class SchoolServiceImplementation implements SchoolService {
     public Future<List<Teacher>> getTeachers(Predicate<? extends Teacher> predicate) {
         Future<List<Teacher>> listFuture = executorService.submit(() -> Teachers.getInstance().getTeachers().stream().
                 filter((Predicate<? super Teacher>) predicate).collect(Collectors.toList()));
-        try {
-            listFuture.wait();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         return listFuture;
     }
 
@@ -73,11 +55,6 @@ public class SchoolServiceImplementation implements SchoolService {
         Future<List<Student>> listFuture =
                 executorService.submit(() -> Students.getInstance().students.stream().
                         filter(student -> student.containsParentId(parent.getId())).collect(Collectors.toList()));
-        try {
-            listFuture.wait();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         return listFuture;
 
     }
@@ -90,46 +67,25 @@ public class SchoolServiceImplementation implements SchoolService {
     @Override
     public Future<List<Dish>> getCanteenFood() {
         Future<List<Dish>> listFuture = executorService.submit(() -> Menu.getInstance().getMenu());
-        try {
-            listFuture.wait();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         return listFuture;
     }
 
     @Override
     public Future<Student> getTheMostSuccessfulStudent() {
-        Future future = executorService.submit(() -> Students.getInstance().students.forEach(student -> student.calculateAverageMark()));
-        try {
-            future.wait();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        Future<Student> studentFuture = executorService.submit(() -> Students.getInstance().students.stream().max(Comparator.comparing(Student::getAverageMark)).get() );
-        try {
-            studentFuture.wait();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return  studentFuture;
+        Future future = executorService.submit(() -> Students.getInstance().
+                students.forEach(student -> student.calculateAverageMark()));
+        Future<Student> studentFuture = executorService.submit(() -> Students.getInstance().students.
+                stream().max(Comparator.comparing(Student::getAverageMark)).get());
+        return studentFuture;
     }
 
     @Override
     public Future<Student> getTheLeastSuccessfulStudent() {
-        Future future = executorService.submit(() -> Students.getInstance().students.forEach(student -> student.calculateAverageMark()));
-        try {
-            future.wait();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        Future<Student> studentFuture = executorService.submit(() -> Students.getInstance().students.stream().min(Comparator.comparing(Student::getAverageMark)).get() );
-        try {
-            studentFuture.wait();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return  studentFuture;
+        Future future = executorService.submit(() -> Students.getInstance().
+                students.forEach(student -> student.calculateAverageMark()));
+        Future<Student> studentFuture = executorService.submit(() -> Students.getInstance().
+                students.stream().min(Comparator.comparing(Student::getAverageMark)).get());
+        return studentFuture;
     }
 
     @Override
@@ -162,6 +118,4 @@ public class SchoolServiceImplementation implements SchoolService {
     public Optional<Teacher> getParentId(int id) {
         Parents.getInstance().getParent(id);
     }
-
-    ExecutorService executorService;
 }
